@@ -29,21 +29,34 @@ const people = [
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's and return the filtered array
 export function myfilter() {
-
+	const filteredInventors = inventors.filter((inventor)=>{
+		if(inventor.year >= 1500 && inventor.year >= 1500){
+			return return;
+		}	
+	});
+	return filteredInventors;
 }
 
 // Array.prototype.map()
 // 2. Give us an array of the inventor first and last names (i.e. full name)
 // Ex: For the first inventor the full name will be 'Albert Einstein'
 export function map() {
-
+const fullName = inventors.map((inventor)=>{
+	let str = inventor.first + " " + inventor.last;
+	return str;
+});
+	return fullName;
 }
 
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest and return the sorted array
 export function sort() {
-
+	let ans = [...inventors]
+ans.sort((a,b)=>{
+	return a.year - b.year;
+});
+	return ans;
 }
 
 
@@ -51,19 +64,30 @@ export function sort() {
 // 4. How many years did all the inventors live?
 // Return the total number of years all the inventors lived
 export function reduce() {
-
+const totalYearsLived = inventors.reduce((acc, inventor) => {
+    return acc + (inventor.passed - inventor.year);
+  }, 0);
+  return totalYearsLived;
 }
 
 // 5. Sort the inventors by years lived and return the sorted array
 export function sortbylived() {
-
+let ans = [...inventors]
+ans.sort((a,b)=>{
+	return (a.passed-a.year) - (b.passed-b.year);
+});
+	return ans;
 }
 
 // 6. sort Exercise
 // Sort the people alphabetically by last name and return the sorted array
 export function sortByLastName() {
-
-}
+const sortedPeopleByLastName = people.sort((a, b) => {
+    const [aLast, aFirst] = a.split(", ");
+    const [bLast, bFirst] = b.split(", ");
+    return aLast > bLast ? 1 : -1;
+  });
+  return sortedPeopleByLastName;
 
 // 7. Reduce Exercise
 // Sum up the instances of each of these
@@ -71,4 +95,13 @@ const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bik
 
 export function reducedSum() {
     // Return an object containing transports as key and its number of occurances as the key's value
+	const transportCounts = data.reduce((obj, transport) => {
+    if (!obj[transport]) {
+      obj[transport] = 1;
+    } else {
+      obj[transport]++;
+    }
+    return obj;
+  }, {});
+  return transportCounts;
 }
